@@ -1,3 +1,5 @@
+package InformationOfSystem;
+
 import java.awt.*;
 import java.text.DateFormat;
 import java.util.Date;
