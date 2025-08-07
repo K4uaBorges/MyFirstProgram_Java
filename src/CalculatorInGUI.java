@@ -3,33 +3,32 @@
 
 import javax.swing.*;
 
+class CalculatorInGUI  {
 
-public class CalculatorInGUI{
+    public static class FrameInicial{
 
-    public static JFrame F;
+        public JFrame F;
 
-    private void Frame() {
-         F = new JFrame("Calculator");
+        public FrameInicial() {
+             F = new JFrame("Calculator");
+        }
+
+        public void creationFrame() {
+            F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            F.setSize(300, 500);
+            F.setVisible(true);
+        }
+
+
     }
-
-    public void CreationFrame() {
-        F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        F.setSize(300, 500);
-        F.setVisible(true);
-
-    }
-
 
     public static void main(String[] args) {
-
-        new CalculatorInGUI().Frame();
-        new CalculatorInGUI().CreationFrame();
-
+        FrameInicial newWindow = new FrameInicial();
+        newWindow.creationFrame();
     }
 
-
-
 }
+
 
 
 
