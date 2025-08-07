@@ -2,6 +2,7 @@
 //to execute
 
 import javax.swing.*;
+import java.awt.*;
 
 class CalculatorInGUI  {
 
