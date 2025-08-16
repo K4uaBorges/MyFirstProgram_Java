@@ -8,11 +8,16 @@ class CalculatorInGUI {
 
     public static class FrameInicial {
 
+        public String[] calculatorNumbers = {"0","1","2","3","4","5","6","7","8","9"};
+        public String[] calculatorOperations = {".","(",")","+","-","/","*","%"};
+        public String calculatorNumber1 = "";
+        public String calculatorNumber2 = "";
         public JFrame F;
         public JButton BUTTON;
         public JTable TABLE;
+        public int X = 2;
+        public int Y = 2;
         public JPanel PANEL;
-        public Cursor CURSOR;
         public final static boolean RIGHT_TO_LEFT = false;
         public final static boolean shouldFill = true;
 
@@ -26,7 +31,9 @@ class CalculatorInGUI {
 
             GridBagConstraints gbc = new GridBagConstraints();
             if (shouldFill) {
-                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.weightx = X;
+                gbc.weighty = Y;
             }
 
             BUTTON = new JButton("<-");
@@ -142,7 +149,7 @@ class CalculatorInGUI {
             F.setDefaultLookAndFeelDecorated(true);
             F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             addComponentInPainel(F.getContentPane());
-            F.setSize(200,250);
+            F.setSize(300,450);
             F.setVisible(true);
         }
 }
