@@ -13,8 +13,8 @@ enum OPERATORS{
 
 public class Operations {
 
-    String nextNumber;
-    String currentNumber = "" ;
+    protected String nextNumber;
+    protected String currentNumber = "0" ;
 
     //In progress
     protected void Operations(OPERATORS op) {
@@ -28,17 +28,17 @@ public class Operations {
         }
     }
 
-    protected void verifyNumber(String nextNumber){
+    protected void verifyNumber(String nextNumber) {
 
-        String newNextNumber = "";
-
-        if(nextNumber != null || nextNumber.length() < 9) {
-            currentNumber = nextNumber+currentNumber;
+        if(currentNumber.equals("0")){
+            currentNumber = nextNumber;
+        }
+        else if(nextNumber != null && currentNumber.length() < 9) {
+            currentNumber = currentNumber+nextNumber;
         }
         else {
             System.out.println("Não é possivel adicionar mais");
         }
-        nextNumber = newNextNumber;
     }
 
 }

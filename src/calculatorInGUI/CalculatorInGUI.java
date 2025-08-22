@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 
 class CalculatorInGUI extends JFrame implements ActionListener {
 
-    Operations operations;
-    String nextNumber;
-    String currentNumber = "0" ;
+    Operations op = new Operations();
     JButton[] B = new JButton[20];
 
     public CalculatorInGUI() {
@@ -57,67 +55,67 @@ class CalculatorInGUI extends JFrame implements ActionListener {
         JButton clicked = (JButton) e.getSource();
         switch (clicked.getText()) {
             case "0":
-                nextNumber = "0";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "0";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                 break;
             case "1":
-                nextNumber = "1";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "1";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                     break;
             case "2":
-                nextNumber = "2";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "2";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                 break;
             case "3":
-                nextNumber = "3";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "3";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                 break;
             case "4":
-                nextNumber = "4";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "4";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                 break;
             case "5":
-                nextNumber = "6";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber +
-                        "\nnext= "+nextNumber);
+                op.nextNumber = "6";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber +
+                        "\nnext= "+op.nextNumber);
                 break;
             case "6":
-                nextNumber = "6";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber +
-                        "\nnext= "+nextNumber);
+                op.nextNumber = "6";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber +
+                        "\nnext= "+op.nextNumber);
                 break;
             case "7":
-                nextNumber = "7";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                        +"\nnext= "+nextNumber);
+                op.nextNumber = "7";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                        +"\nnext= "+op.nextNumber);
                 break;
             case "8":
-                nextNumber = "8";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                       +"\nnext= "+nextNumber);
+                op.nextNumber = "8";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                       +"\nnext= "+op.nextNumber);
                 break;
             case "9":
-                nextNumber = "9";
-                operations.verifyNumber(nextNumber);
-                System.out.println("current= "+currentNumber
-                       +"\nnext= "+nextNumber);
+                op.nextNumber = "9";
+                op.verifyNumber(op.nextNumber);
+                System.out.println("current= "+op.currentNumber
+                       +"\nnext= "+op.nextNumber);
                 break;
             case "%":
-                operations.Operations(OPERATORS.PERCENTAGE);
+                op.Operations(OPERATORS.PERCENTAGE);
             }
         }
 
