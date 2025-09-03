@@ -9,11 +9,12 @@ class CalculatorInGUI extends JFrame implements ActionListener {
 
     Operations op = new Operations();
     JButton[] B = new JButton[20];
+    String nextNumber = op.getNextNumber();
 
-    public CalculatorInGUI() {
+    private CalculatorInGUI() {
         Visual();
     }
-    public void Visual () {
+    private void Visual () {
 
         setTitle("Calculator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,72 +56,64 @@ class CalculatorInGUI extends JFrame implements ActionListener {
         JButton clicked = (JButton) e.getSource();
         switch (clicked.getText()) {
             case "0":
-                op.nextNumber = "0";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
+                op.setNextNumber("0");
+                op.outputNumber();
                 break;
+
             case "1":
-                op.nextNumber = "1";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
-                    break;
+                op.setNextNumber("1");
+                op.outputNumber();
+                break;
             case "2":
-                op.nextNumber = "2";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
+                op.setNextNumber("2");
+                op.outputNumber();
                 break;
+
             case "3":
-                op.nextNumber = "3";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
+                op.setNextNumber("3");;
+                op.outputNumber();
                 break;
+
             case "4":
-                op.nextNumber = "4";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
+                op.setNextNumber("4");
+                op.outputNumber();
                 break;
+
             case "5":
-                op.nextNumber = "6";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber +
-                        "\nnext= "+op.nextNumber);
+                op.setNextNumber("5");
+                op.outputNumber();
                 break;
+
             case "6":
-                op.nextNumber = "6";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber +
-                        "\nnext= "+op.nextNumber);
+                op.setNextNumber("6");
+                op.outputNumber();
                 break;
+
             case "7":
-                op.nextNumber = "7";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                        +"\nnext= "+op.nextNumber);
+                op.setNextNumber("7");
+                op.outputNumber();
                 break;
+
             case "8":
-                op.nextNumber = "8";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                       +"\nnext= "+op.nextNumber);
+                op.setNextNumber("8");;
+                op.outputNumber();
                 break;
+
             case "9":
-                op.nextNumber = "9";
-                op.verifyNumber(op.nextNumber);
-                System.out.println("current= "+op.currentNumber
-                       +"\nnext= "+op.nextNumber);
+                op.setNextNumber("9");
+                op.outputNumber();
                 break;
+
             case "%":
                 op.Operations(OPERATORS.PERCENTAGE);
             }
         }
 
+    private void outputOperators(){
 
-        public static void main (){
+    }
+
+    public static void main (){
             new CalculatorInGUI();
         }
     }
