@@ -1,6 +1,8 @@
 package calculatorInGUI;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Scanner;
 
 enum OPERATORS{
@@ -14,14 +16,27 @@ enum OPERATORS{
 
 public class Operations {
 
-    private double operator[];
+    /*
+    Else you create the many array, i think in a another solution, who you just need 1 variable
+    in inicial you just multiple 1* the number and you have number and, when you multiply next one
+    you multiple the number saved with the number in current number
+
+    for the some and minus you just some or minus the 0, e made the same process
+
+    for the divide you need two variable, in one you have the variable for save the result and you have one for divide
+     */
+    private double op1;
+    private double op2;
+    private int numberOperators = 0;
     private double solution;
     private String nextNumber;
-    private String currentNumber = "0" ;
-    int i = 0;
+    private String currentNumber = "0";
+    private Boolean verifyDivide = false;
+    private Boolean verifyDuplicator = true;
 
     public void setNextNumber(String nextNumber){
         this.nextNumber = nextNumber;
+        verifyDuplicator = false;
     }
 
     public String getNextNumber(){
@@ -37,6 +52,9 @@ public class Operations {
     }
 
     public void outputNumber(){
+        if(!(verifyDuplicator)){
+            currentNumber = "0";
+        }
         verifyNumber(nextNumber);
         //test
         System.out.println("current= "+ currentNumber
@@ -44,39 +62,62 @@ public class Operations {
     }
 
     //In progress
-    protected void Operations(OPERATORS op) {
+    protected void Operations(@NotNull OPERATORS op) {
         switch(op){
             case DIVIDE:
-                verifyNumber(nextNumber);
                 if(!(currentNumber.equals("0"))){
-                    operator[i] = Double.valueOf(currentNumber);
-                    i++;
-                    currentNumber = "0";
+                    op1 = Double.valueOf(currentNumber);
+                    numberOperators++;
+                    verifyDivide = true;
+                    verifyDuplicator = true;
                 } else throw new ArithmeticException("You can't divide by zero");
                 break;
 
             case MULTIPLY:
-                verifyNumber(nextNumber);
-                operator[i] = Double.valueOf(currentNumber);
-                i++;
-                currentNumber = "0";
+                if (verifyDivide == true){
+                    divide();
+                }
+                if(numberOperators == 0){
+                    op1 = 1;
+                    op1 *= Double.valueOf(currentNumber);
+                } else {
+                    op1 *= Double.valueOf(currentNumber);
+                }
+                verifyDuplicator = true;
+                numberOperators++;
                 break;
 
             case SOME:
-                verifyNumber(nextNumber);
-                operator[i] = Double.valueOf(currentNumber);
-                i++;
-                currentNumber = "0";
+                if (verifyDivide == true){divide();}
+                if(numberOperators == 0){
+                    op1 = 0;
+                    op1 += Double.valueOf(currentNumber);
+                } else {
+                    op1 += Double.valueOf(currentNumber);
+                }
+                verifyDuplicator = true;
+                numberOperators++;
                 break;
 
             case MINUS:
-                verifyNumber(nextNumber);
-                operator[i] = Double.valueOf(currentNumber);
-                i++;
-                currentNumber = "0";
+                if (verifyDivide == true){divide();}
+                if(numberOperators == 0){
+                    op1 = 0;
+                    op1 -= Double.valueOf(currentNumber);
+                } else {
+                    op1 -= Double.valueOf(currentNumber);
+                };
+                verifyDuplicator = true;
+                numberOperators++;
                 break;
 
         }
+    }
+
+    private void divide(){
+        op2 = Double.valueOf(currentNumber);
+        op1/=op2;
+        verifyDivide = false;
     }
 
     protected void verifyNumber(String nextNumber) {

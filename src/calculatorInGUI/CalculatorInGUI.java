@@ -104,13 +104,25 @@ class CalculatorInGUI extends JFrame implements ActionListener {
                 op.outputNumber();
                 break;
 
-            case "%":
-                op.Operations(OPERATORS.PERCENTAGE);
-            }
+            case "*":
+                op.Operations(OPERATORS.MULTIPLY);
+                break;
+
+            case "+":
+                op.Operations(OPERATORS.SOME);
+                break;
+
+            case "-":
+                op.Operations(OPERATORS.MINUS);
+                break;
+
+            case "/":
+                op.Operations(OPERATORS.DIVIDE);
+                break;
         }
 
-    private void outputOperators(){
-
+    /*private void outputOperators(){
+*/
     }
 
     public static void main (){
