@@ -17,26 +17,31 @@ enum OPERATORS{
 public class Operations {
 
     /*
-    Else you create the many array, i think in a another solution, who you just need 1 variable
-    in inicial you just multiple 1* the number and you have number and, when you multiply next one
-    you multiple the number saved with the number in current number
+    Else you create the many array, i think in another solution, who you need 1 variable
 
-    for the some and minus you just some or minus the 0, e made the same process
+    In multiple, you just multiple for 1 and you have number multiple for 1 saved, ready for the next operation
 
-    for the divide you need two variable, in one you have the variable for save the result and you have one for divide
-     */
+    In some or minus, you just some or minus the 0, and same process
+
+    for the divide you need two variable, in one you have the variable for save the result and, next one you have one for divide
+
+    what happened when you clicked in equal? So think in this i implemented the duplicator, when is happen.
+         */
     private double op1;
     private double op2;
+    private double result;
     private int numberOperators = 0;
-    private double solution;
     private String nextNumber;
     private String currentNumber = "0";
     private Boolean verifyDivide = false;
-    private Boolean verifyDuplicator = true;
+    private Boolean verifyDoble = false;
+    private Boolean verifyMultiply = false;
+    private Boolean verifySome = false;
+    private Boolean verifyMinus = false;
 
     public void setNextNumber(String nextNumber){
         this.nextNumber = nextNumber;
-        verifyDuplicator = false;
+        outputNumber();
     }
 
     public String getNextNumber(){
@@ -52,75 +57,20 @@ public class Operations {
     }
 
     public void outputNumber(){
-        if(!(verifyDuplicator)){
-            currentNumber = "0";
-        }
-        verifyNumber(nextNumber);
+        setCurrentNumber();
+        verifyDoble = false;
         //test
         System.out.println("current= "+ currentNumber
-                +"\nnext= "+nextNumber);
+                +"\nnext= "+nextNumber +
+                "\nactually ="+op1 +
+                "\nresult ="+result);
     }
 
-    //In progress
-    protected void Operations(@NotNull OPERATORS op) {
-        switch(op){
-            case DIVIDE:
-                if(!(currentNumber.equals("0"))){
-                    op1 = Double.valueOf(currentNumber);
-                    numberOperators++;
-                    verifyDivide = true;
-                    verifyDuplicator = true;
-                } else throw new ArithmeticException("You can't divide by zero");
-                break;
-
-            case MULTIPLY:
-                if (verifyDivide == true){
-                    divide();
-                }
-                if(numberOperators == 0){
-                    op1 = 1;
-                    op1 *= Double.valueOf(currentNumber);
-                } else {
-                    op1 *= Double.valueOf(currentNumber);
-                }
-                verifyDuplicator = true;
-                numberOperators++;
-                break;
-
-            case SOME:
-                if (verifyDivide == true){divide();}
-                if(numberOperators == 0){
-                    op1 = 0;
-                    op1 += Double.valueOf(currentNumber);
-                } else {
-                    op1 += Double.valueOf(currentNumber);
-                }
-                verifyDuplicator = true;
-                numberOperators++;
-                break;
-
-            case MINUS:
-                if (verifyDivide == true){divide();}
-                if(numberOperators == 0){
-                    op1 = 0;
-                    op1 -= Double.valueOf(currentNumber);
-                } else {
-                    op1 -= Double.valueOf(currentNumber);
-                };
-                verifyDuplicator = true;
-                numberOperators++;
-                break;
-
-        }
+    public void clearCurrentNumber(){
+        currentNumber = "0";
     }
 
-    private void divide(){
-        op2 = Double.valueOf(currentNumber);
-        op1/=op2;
-        verifyDivide = false;
-    }
-
-    protected void verifyNumber(String nextNumber) {
+    private void verifyNumber(String nextNumber) {
         if(currentNumber.equals("0")){
             currentNumber = nextNumber;
         } else if(nextNumber != null && currentNumber.length() < 9) {
@@ -130,4 +80,109 @@ public class Operations {
         }
     }
 
+
+    //In progress
+    //building and thinks forms when the user inside 1 or more operations
+    protected void Operations(@NotNull OPERATORS op) {
+        switch(op){
+            case DIVIDE:
+                if(!(currentNumber.equals("0"))){
+                    op1 = Double.valueOf(currentNumber);
+                    numberOperators++;
+                    verifyDivide = true;
+                    verifyDoble = true;
+                } else throw new ArithmeticException("You can't divide by zero");
+                break;
+
+            case MULTIPLY:
+                verifyMultiply = true;
+                verifySome = false;
+                verifyMinus = false;
+                if(!verifyDoble){
+                    if (verifyDivide == true){
+                        divide();
+                    }
+                    if(numberOperators == 0){
+                        op1 = 1;
+                        op1 *= Double.valueOf(currentNumber);
+                    } else {
+                        op1 *= Double.valueOf(currentNumber);
+                    }
+                    verifyDoble = true;
+                    numberOperators++;
+                    clearCurrentNumber();
+                }
+                break;
+
+            case SOME:
+                verifyMultiply = false;
+                verifySome = true;
+                verifyMinus = false;
+                if (!verifyDoble){
+                    if (verifyDivide == true){divide();}
+                    if(numberOperators == 0){
+                        op1 = 0;
+                        op1 += Double.valueOf(currentNumber);
+                    } else {
+                        op1 += Double.valueOf(currentNumber);
+                    }
+                    verifyDoble = true;
+                    numberOperators++;
+                    clearCurrentNumber();
+                }
+                break;
+
+            case MINUS:
+                verifyMultiply = false;
+                verifySome = false;
+                verifyMinus = true;
+                if(!verifyDoble){
+                    if (verifyDivide == true){divide();}
+                    if(numberOperators == 0){
+                        op1 = Double.valueOf(currentNumber);
+                    } else {
+                        op1 -= Double.valueOf(currentNumber);
+                    };
+                    verifyDoble = true;
+                    numberOperators++;
+                    clearCurrentNumber();
+                }
+                break;
+
+            case SOLUTION:
+                if (verifyDivide == true){
+                    divide();
+                }
+                else if (verifySome == true){
+                    Operations(OPERATORS.SOME);
+                }
+                else if (verifyMinus == true){
+                    Operations(OPERATORS.MINUS);
+                }
+                else if (verifyMultiply == true){
+                    Operations(OPERATORS.MULTIPLY);
+                }
+                else {
+                    result = op1;
+                }
+
+                if(numberOperators == 0){
+                    result = 0;
+                } else {
+                    result = op1;
+                };
+                numberOperators++;
+                System.out.println("current= "+ currentNumber
+                        +"\nnext= "+nextNumber +
+                        "\nactually ="+op1 +
+                        "\nresult ="+result);
+                break;
+        }
+    }
+
+    private void divide(){
+        op2 = Double.valueOf(currentNumber);
+        op1/=op2;
+        verifyDivide = false;
+    }
 }

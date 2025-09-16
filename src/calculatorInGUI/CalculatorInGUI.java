@@ -57,51 +57,41 @@ class CalculatorInGUI extends JFrame implements ActionListener {
         switch (clicked.getText()) {
             case "0":
                 op.setNextNumber("0");
-                op.outputNumber();
                 break;
 
             case "1":
                 op.setNextNumber("1");
-                op.outputNumber();
                 break;
             case "2":
                 op.setNextNumber("2");
-                op.outputNumber();
                 break;
 
             case "3":
                 op.setNextNumber("3");;
-                op.outputNumber();
                 break;
 
             case "4":
                 op.setNextNumber("4");
-                op.outputNumber();
                 break;
 
             case "5":
                 op.setNextNumber("5");
-                op.outputNumber();
                 break;
 
             case "6":
                 op.setNextNumber("6");
-                op.outputNumber();
                 break;
 
             case "7":
                 op.setNextNumber("7");
-                op.outputNumber();
                 break;
 
             case "8":
                 op.setNextNumber("8");;
-                op.outputNumber();
                 break;
 
             case "9":
                 op.setNextNumber("9");
-                op.outputNumber();
                 break;
 
             case "*":
@@ -118,6 +108,10 @@ class CalculatorInGUI extends JFrame implements ActionListener {
 
             case "/":
                 op.Operations(OPERATORS.DIVIDE);
+                break;
+
+            case "=":
+                op.Operations(OPERATORS.SOLUTION);
                 break;
         }
 
